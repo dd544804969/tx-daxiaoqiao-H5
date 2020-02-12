@@ -21,7 +21,7 @@ var initProject = function () {
     })();
 
     // 初始化微信接口
-    TD.initWxApi(window.shareText);
+    // TD.initWxApi(window.shareText);
 
     // 阻止微信下拉；原生js绑定覆盖zepto的默认绑定
     document.body.addEventListener('touchmove', function (e) {
@@ -86,38 +86,6 @@ var LoadViewController = function () {
         _private.gload.onfail = function (msg) {
             console.log(msg);
         };
-        // ----- 交接版统计 start -----
-        // try {
-        //     TGMobileShare({
-        //         shareTitle: window.shareText.shareTitle,
-        //         shareDesc: window.shareText.shareDesc,
-        //         shareImgUrl: window.shareText.shareImgUrl,
-        //         shareLink: window.shareText.shareLink,
-        //         actName: window.shareText.actName,
-        //         onInit: function (tgms) {
-        //             // 此方法安卓已不可用
-        //             // video.play();
-        //             // _that.onplay && _that.onplay();
-        //         },
-        //         onShare: {
-        //             WXToMessageSuccess: function () {
-        //                 PTTSendClick('share', 'wxmsg', '分享微信好友');
-        //             },
-        //             WXToTimelineSuccess: function () {
-        //                 PTTSendClick('share', 'wxtimeline', '分享微信朋友圈');
-        //             },
-        //             QQToQQSuccess: function () {
-        //                 PTTSendClick('share', 'qq', '分享QQ好友');
-        //             },
-        //             QQToQzoneSuccess: function () {
-        //                 PTTSendClick('share', 'qzone', '分享Qzone');
-        //             }
-        //         }
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        // ----- 交接版统计 end -----
         _private.isInit = true;
     };
 
