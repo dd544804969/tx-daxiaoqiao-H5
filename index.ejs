@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <![endif]-->
+    <title>大小乔测试h5</title>
+    <meta id="share-name" itemprop="name" content="">
+    <meta id="share-description" itemprop="description" content="">
+    <meta id="share-image" itemprop="image" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- rem布局初始化设置start -->
+    <script type="text/javascript">
+        <%= require('raw-loader!./src/js/app/rem.js') %>
+    </script>
+    <!-- rem布局初始化设置end -->
+
+    <% if (process.env.NODE_ENV === 'handover') { %>
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <% var cssFile = htmlWebpackPlugin.files.css[css] %>
+
+    <link href="<%= cssFile %>" rel="stylesheet">
+    <% } %>
+
+    <% } else { %>
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <% var cssFile = htmlWebpackPlugin.files.css[css].substr(htmlWebpackPlugin.files.publicPath.length); %>
+
+    <link href="<%= cssFile %>" rel="stylesheet">
+    <% } %>
+
+    <% } %>
+
+</head>
+<body>
+    <div class="m-main-wrap absf">
+        
+        <!-- 竖屏页 -->
+        <div class="m-vertical absf">
+            <div class="m-wrap sizcont abcter">
+                <div class="m-loading">
+                    <div class="bg-box">
+                        <div class="load-process">0%</div> 
+                        <div class="word"></div>
+                        <div class="bell-line"></div>
+                        <div class="bell"></div>
+                    </div>
+                    <div class="begin-box">
+                        <div class="begin-tips">
+                            <!-- <div class="bg"></div> -->
+                        </div>
+                        <div class="go-tips">
+                            <div class="inner">
+                                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    width="40px" height="40px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" style="" xml:space="preserve">
+                                    <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                    <animateTransform attributeType="xml"
+                                    attributeName="transform"
+                                    type="rotate"
+                                    from="0 25 25"
+                                    to="360 25 25"
+                                    dur="0.6s"
+                                    repeatCount="indefinite"/>
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="btn-begin"></div>
+                    </div>
+                </div>
+                <div class="m-index">
+                    <div class="video-box">
+                        <!-- <video class="video" src="" webkit-playsinline="" playsinline="" preload="preload" width="100%" height="100%"></video> -->
+                        <div class="btn-skip"></div>
+                    </div>
+                    <div class="kf-box">
+                        <div class="kf kf-b" data-keyto="45" data-prefix="kfb_"></div>
+                        <div class="kf kf-a" data-keyto="24" data-prefix="kfa_"></div>
+                        <div class="kf-ctr"></div>
+                        <div class="touch-tips abcter">向下滑动</div>
+                    </div>
+                    <div class="choose-box">
+                        <div class="suspect first">
+                            <!-- <!-- <div class="pic"></div> -->
+                            <div class="icon"></div>
+                            <div class="wrong-tips"></div>
+                            <!-- <div class="name"></div> -->
+                            <div class="inside"></div>
+                        </div>
+                        <div class="suspect second">
+                            <!-- <!-- <div class="pic"></div> -->
+                            <div class="icon"></div>
+                            <div class="wrong-tips"></div>
+                            <!-- <div class="name"></div> -->
+                            <div class="inside"></div>
+                        </div>
+                        <div class="suspect third">
+                            
+                            <div class="icon"></div>
+        
+                        </div>
+                        <div class="wrong-tips"></div>
+                    </div>
+                    <div class="end-box">
+                        <div class="bg"></div>
+                        <a class="btn-href" href="https://hd.oppo.com/act/m/2019/0410/index.html?utm_source=weixin_medium=h5"></a>
+                        <div class="btn-share"></div>
+                        <div class="btn-replay"></div>
+                    </div>
+                </div>
+                <div class="m-share-float">
+                    <div class="share-box">
+                        <div class="inner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="//ossweb-img.qq.com/images/js/jquery/jquery-1.11.3.min.js"></script>
+    <!-- <script src="<%= require('./src/js/lib/howler.min.js') %>"></script> -->
+    <!-- <script src="https://qrtss.treedom.cn/opporenozoom/img/howler.min.js"></script> -->
+    <!-- 本地版 start -->
+    
+    <script>
+        var ua = window.navigator.userAgent.toLowerCase();
+        var isWeiXin = function () {
+            if (/micromessenger/.test(ua)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        var videoUrl = '<%= require('./src/media/video.mp4') %>';
+        if (isWeiXin()) {
+            $('<video></video>').attr({
+                src: videoUrl,
+                class: 'video',
+                'playsinline': '',
+                'webkit-playsinline': ''
+            }).prependTo('.video-box')
+        } else {
+            $('<video></video>').attr({
+                src: videoUrl,
+                class: 'video',
+                preload: 'preload',
+                'x5-video-player-type': 'h5',
+                'disable-video-auto-fullscreen': true,
+                'video-no-fixed-top': true
+            }).prependTo('.video-box')
+        }
+        // 分享配置
+        window.shareText = {
+            title: '一宗离奇失窃案，背后隐藏着什么？',
+            desc: '真相只有一个！',
+            link: location.href,
+            // 分享配图
+            img: 'https://qrtss.treedom.cn/opporenozoom/img/share2.jpg',
+            // 项目名，数据查询时候用
+            proj: 'streetgame',
+            // 填写公众号绑定的appid
+            appid: 'wx045f59bcba3061c4',
+            cnzz: '1277416882'
+        }
+        // $('.m-index .video').attr('src', '<%= require('./src/media/video.mp4') %>');
+    </script>
+   <!-- <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
+   <script>
+     // 初始化
+     var vConsole = new VConsole();
+     console.log('Hello world');
+   </script> -->
+    <!-- 本地版 end -->
+
+    <% if (process.env.NODE_ENV === 'handover') { %>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+
+    <% var jsFile = htmlWebpackPlugin.files.chunks[chunk].entry; %>
+
+    <script type="text/javascript" src="<%= jsFile %>"></script>
+
+    <% } %>
+
+    <% } else { %>
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+
+    <% var jsFile = htmlWebpackPlugin.files.chunks[chunk].entry.substr(htmlWebpackPlugin.files.publicPath.length); %>
+
+    <script type="text/javascript" src="<%= jsFile %>"></script>
+
+    <% } %>
+
+    <% } %>
+
+    </body>
+</html>

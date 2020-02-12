@@ -1,0 +1,381 @@
+@import "reset.less";
+@import "keyframe.less";
+@import "common.less";
+
+@data: '../img/';
+
+@img: '../img/';
+// @img: 'http://qrs.treedom.cn/joymj/';
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-size: 14px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.m-main-wrap{
+    overflow: hidden;
+}
+
+.m-vertical {
+    // display: none;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    .m-wrap {
+        width: 750px;
+        height: 1600px;
+    }
+}
+
+@media all and (orientation: landscape) {
+    .m-vertical {
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+}
+
+.m-loading {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    .bg-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        // background: url('@{img}bg_loading.jpg') no-repeat;
+        background: url(../img/bg_loading.jpg) no-repeat;
+        background-size: 750px auto;
+        .load-process {
+            position: absolute;
+            top: 980px;
+            left: 0;
+            width: 100%;
+            line-height: 32px;
+            text-align: center;
+            font-size: 30px;
+            color: #d6a167;
+        }
+        .word {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('@{img}loading_word.png') no-repeat;
+            background-size: 750px auto;
+        }
+        .bell {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('@{img}loading_bell.png') no-repeat;
+            background-size: 750px auto;
+        }
+        .bell-line {
+            position: absolute;
+            width: 36px;
+            height: 140px;
+            background: url('@{img}loading_line.png') no-repeat;
+            background-size: 36px auto;
+            top: 709px;
+            left: 340px;
+            transform-origin: center -19px; 
+            animation: rotateBell 0.7s linear infinite alternate;
+        }
+    }
+    .begin-box {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .begin-tips {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('@{img}bg_load_tips.png') no-repeat;
+            background-size: 750px auto;
+            animation: tips 1.4s linear infinite;
+        }
+        .go-tips {
+            display: none;
+            position: absolute;
+            top: 56%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 60px 0 0 -40px;
+            .inner {
+                width: 100%;
+                height: 100%;
+            }
+            svg path,
+            svg rect {
+                fill: #ffffff;
+            }
+        }
+        .btn-begin {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.m-index {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // z-index: 2;
+    .video-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .btn-skip {
+            display: none;
+            position: absolute;
+            top: 10%;
+            right: 12%;
+            width: 32Px;
+            height: 16Px;
+            background: url('@{img}bg_skip.png') no-repeat;
+            background-size: cover;
+            transform: scale(1.5);
+        }
+        .video {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .kf-box {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        .kf{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .kf-ctr {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .touch-tips {
+            color:#ffffff;
+            font-size:30px;
+            top:80%;
+            // position: absolute;
+            // .abcter
+        }
+    }
+    .choose-box {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url('@{img}bg_choose.png') no-repeat;
+        background-size: cover;
+        .suspect {
+            position: absolute;
+            .icon {
+                position: absolute;
+                width: 96px;
+                height: 97px;
+                background: url('@{img}bg_point.png') no-repeat;
+                background-size: cover;
+                bottom: 120px;
+                left: 50%;
+                margin-left: -48px;
+                animation: tips2 1.4s infinite linear;
+            }
+            .wrong-tips {
+                opacity: 0;
+                position: absolute;
+                width: 145px;
+                height: 160px;
+                bottom: 1.2rem;
+                left: 50%;
+                margin-left: -80.5px;
+                background: url('@{img}wrong_tips.png');
+                background-size: cover;
+                transform: scale(0.2);
+                transition: transform 0.5s, opacity 0.5s;
+                &.wrong {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            &.first {
+                width: 363px;
+                height: 470px;
+                left: 350px;
+                top: 412px;
+                // background: url('@{img}wine.png') no-repeat;
+                // background-size: cover;
+                .name {
+                    position: absolute;
+                    width: 417px;
+                    height: 559px;
+                    // background: url('@{img}wine_name.png') no-repeat;
+                    // background-size: cover;
+                }
+                .pic {
+                    position: absolute;
+                    width: 417px;
+                    height: 559px;
+                    // background: url('@{img}wine_pic.png') no-repeat;
+                    // background-size: cover;
+                }
+                .inside {
+                    display: none;
+                    position: absolute;
+                    width: 363px;
+                    height: 470px;            
+                    background: url('@{img}wine_inside.png') no-repeat;
+                    background-size: cover;
+                }
+                &.choose {
+                    background: url('@{img}wine_choose.png') no-repeat;
+                    background-size: cover;
+                    .name {
+                        position: absolute;
+                        width: 417px;
+                        height: 559px;
+                        // background: url('@{img}wine_name_choose.png') no-repeat;
+                        // background-size: cover;
+                    }
+                    .inside {
+                        display: block;
+                        animation: fadeinout 1.2s  linear;
+                    }
+                }
+            }
+            &.second {
+                width: 422px;
+                height: 325px;
+                left: 284px;
+                top: 903px;
+                // background: url('@{img}professor.png') no-repeat;
+                // background-size: cover;
+                .name {
+                    position: absolute;
+                    width: 489px;
+                    height: 400px;
+                    // background: url('@{img}professor_name.png') no-repeat;
+                    // background-size: cover;
+                }
+                .pic {
+                    position: absolute;
+                    width: 489px;
+                    height: 400px;
+                    // background: url('@{img}professor_pic.png') no-repeat;
+                    // background-size: cover;
+                }
+                .wrong-tips{
+                    bottom: 50px;
+                }
+                .inside {
+                    display: none;
+                    position: absolute;
+                    width: 422px;
+                    height: 325px;
+                    background: url('@{img}professor_inside.png') no-repeat;
+                    background-size: cover;
+                }
+                &.choose {
+                    background: url('@{img}professor_choose.png') no-repeat;
+                    background-size: cover;
+                    .name {
+                        position: absolute;
+                        width: 466px;
+                        height: 360px;
+                        // background: url('@{img}professor_name_choose.png') no-repeat;
+                        // background-size: cover;
+                    }
+                    .inside {
+                        display: block;
+                        animation: fadeinout 1.2s  linear;
+                       
+                    }
+                }
+            }
+            &.third {
+                width: 379px;
+                height: 509px;
+                left: 0;
+                top: 211px;
+                // background: url('@{img}carpente.png') no-repeat;
+                // background-size: cover;
+                &.choose {
+                    background: url('@{img}carpente_choose.png') no-repeat;
+                    background-size: cover;
+                }
+            }
+        }
+    }
+    .end-box {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        &.show .bg {
+            opacity: 1;
+            // -webkit-transition: opacity linear 500;
+            // transition: opacity linear 500ms;
+        }
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('@{img}bg_end.jpg') no-repeat;
+            background-size: 750px auto;
+            // opacity: 0;
+        }
+        .btn-href {
+            position: absolute;
+            top: 1203px;
+            left: 403px;
+            width: 255px;
+            height: 82px;
+        }
+        .btn-share {
+            display: none;
+            position: absolute;
+            top: 1270px;
+            left: 204px;
+            width: 290px;
+            height: 104px;
+        }
+        .btn-replay {
+            position: absolute;
+            top: 1203px;
+            left: 93px;
+            width: 255px;
+            height: 82px;
+        }
+    }
+}
