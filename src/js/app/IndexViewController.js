@@ -22,12 +22,9 @@ var IndexViewController = function () {
     var kfBox = $('.kf-box');
     var kfCtr = $('.kf-ctr');
     var touchTips = $('.touch-tips');
-    var chooseBox = $('.choose-box');
-    var suspect = $('.suspect');
     let buffer = Config.Preload.buffer;
     var firstTouch = true;
     var musicPlay = false;
-    var hadWrong = false;
     var timer, videoTimer;
     var Kf, kfa;
     var kfNow = 0;
@@ -35,7 +32,7 @@ var IndexViewController = function () {
     var kfMin = 0;
     var isPlay = false;
     var step = 0;
-    var isSkip = false;
+    // var isSkip = false;
 
     _private.isInit = false;
 
@@ -98,15 +95,15 @@ var IndexViewController = function () {
         });
 
         btnSkip.on('click', function (e) {
-            video.currentTime = video.duration - 2;
-            $(this).hide();
+            if (step === 1) {
+                video.currentTime = 34;
+            } else if (step === 2) {
+                video.currentTime = video.duration - 2;
+            }
             // ----- 交接版统计 -----
             // PTTSendClick('btn', 'skip', '跳过视频');
             // ----- 本地版统计 -----
             // TD.push('用户操作', '点击按钮', '跳过视频', '', e, this);
-        });
-        suspect.on('click', function () {
-            chooseSuspect($(this));
         });
         var shareResize = function (e) {
             setTimeout(function () {
@@ -175,32 +172,10 @@ var IndexViewController = function () {
             // PTTSendClick('video', 'time', '1/4位置');
             // ----- 本地版统计 -----
             // TD.push('系统事件', '视频进度', '1/4位置', '');
-        } else if (step === 2 && video.currentTime > 80) {
-            step = 3;
-            // timer = setInterval(function () {
-            //     if (video.currentTime >= 84.32) {
-            //         clearInterval(timer);
-            //         // Config.music2.play();
-            //         // Config.music2.fade(0, 1, 1000);
-            //         TD.push('系统事件', '视频进度', '嫌疑人交互', '');
-            //         video.pause();
-            //         chooseBox.show();
-            //     }
-            // }, 100);
-            // ----- 交接版统计 -----
-            // PTTSendClick('video', 'time', '2/4位置');
-            // ----- 本地版统计 -----
-            // TD.push('系统事件', '视频进度', '2/4位置', '');
-        } else if (step === 3 && video.currentTime > video.duration / 4 * 3) {
-            step = 4;
-            // ----- 交接版统计 -----
-            // PTTSendClick('video', 'time', '3/4位置');
-            // ----- 本地版统计 -----
-            // TD.push('系统事件', '视频进度', '3/4位置', '');
-        }
-        if (!isSkip && video.currentTime > video.duration / 4) {
-            btnSkip.show();
-        }
+        };
+        // if (!isSkip && video.currentTime > video.duration / 4) {
+        //     btnSkip.show();
+        // }
         if (video.currentTime > video.duration - 2) {
             endBox.show();
             btnSkip.hide();
@@ -213,11 +188,6 @@ var IndexViewController = function () {
         let endPoint = 0;
         let distance = 0;
         let touchSum = 0;
-        // let firstTouch = true;
-        // let firstPoint = 0;
-        // let lastDirection = 0;
-        // let touchStartTime = new Date().getTime();
-        // let touchEndTime = new Date().getTime();
 
         // let getPointX = (e) => {
         //     let evt = e;
@@ -250,9 +220,6 @@ var IndexViewController = function () {
             // event.stopPropagation();
             console.log('touchmove');
             e.preventDefault();
-            // if (videoPlaying) {
-            //     return;
-            // }
             if (firstTouch) {
                 // touchTips.hide();
                 $('.kf-a').hide();
@@ -260,11 +227,6 @@ var IndexViewController = function () {
             }
             endPoint = getPointY(event);
             distance = endPoint - startPoint;
-
-            // event.preventDefault();
-            // touchEndTime = new Date().getTime();
-            // let duration = touchEndTime - touchStartTime;
-
             if (distance > 1) {
                 touchSum--;
                 if (touchSum <= -1 && kfNow > kfMin) {
@@ -309,53 +271,20 @@ var IndexViewController = function () {
         });
 
         kfCtr.on('touchmove', touchmoveHandler);
-        // kfCtr.on('touchend', touchendHandler);
     };
     var replay = function () {
         video.currentTime = 0;
         firstTouch = true;
         musicPlay = false;
-        hadWrong = false;
         Kf.goto(0);
         kfNow = 0;
         step = 0;
         $('.kf-a').show();
-        suspect.removeClass('choose');
-        suspect.find('.icon').show();
         video.play();
         video.addEventListener('timeupdate', canplayEvent);
         setTimeout(function () {
             endBox.hide();
         }, 300);
-    };
-    var chooseSuspect = function (that) {
-        that.find('.icon').hide();
-        if (that.hasClass('third')) {
-            TD.push('选择嫌疑人', '选择成功');
-            if (hadWrong === true) {
-                $('.wrong-tips').removeClass('wrong');
-                setTimeout(function () {
-                    // Config.music2.fade(1, 0, 1000);
-                    video.play();
-                    chooseBox.hide();
-                }, 500);
-            } else {
-                // Config.music2.fade(1, 0, 1000);
-                // setTimeout(function () {
-                video.play();
-                chooseBox.hide();
-                // }, 300);
-            }
-        } else {
-            hadWrong = true;
-            that.find('.wrong-tips').addClass('wrong');
-            suspect.removeClass('choose');
-            clearTimeout(timer);
-            that.addClass('choose');
-            timer = setTimeout(function () {
-                that.removeClass('choose');
-            }, 1200);
-        }
     };
     // 显示
     _that.show = function () {

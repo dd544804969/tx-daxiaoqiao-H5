@@ -149,13 +149,14 @@ html, body {
         width: 100%;
         height: 100%;
         .btn-skip {
-            display: none;
+            // display: none;
             position: absolute;
-            top: 10%;
+            top: 12%;
             right: 12%;
-            width: 32Px;
-            height: 16Px;
-            background: url('@{img}bg_skip.png') no-repeat;
+            width: 36Px;
+            height: 40Px;
+            // background: url('@{img}bg_skip.png') no-repeat;
+            background-color: #fff;
             background-size: cover;
             transform: scale(1.5);
         }
@@ -186,151 +187,6 @@ html, body {
             top:80%;
             // position: absolute;
             // .abcter
-        }
-    }
-    .choose-box {
-        display: none;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: url('@{img}bg_choose.png') no-repeat;
-        background-size: cover;
-        .suspect {
-            position: absolute;
-            .icon {
-                position: absolute;
-                width: 96px;
-                height: 97px;
-                background: url('@{img}bg_point.png') no-repeat;
-                background-size: cover;
-                bottom: 120px;
-                left: 50%;
-                margin-left: -48px;
-                animation: tips2 1.4s infinite linear;
-            }
-            .wrong-tips {
-                opacity: 0;
-                position: absolute;
-                width: 145px;
-                height: 160px;
-                bottom: 1.2rem;
-                left: 50%;
-                margin-left: -80.5px;
-                background: url('@{img}wrong_tips.png');
-                background-size: cover;
-                transform: scale(0.2);
-                transition: transform 0.5s, opacity 0.5s;
-                &.wrong {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-            &.first {
-                width: 363px;
-                height: 470px;
-                left: 350px;
-                top: 412px;
-                // background: url('@{img}wine.png') no-repeat;
-                // background-size: cover;
-                .name {
-                    position: absolute;
-                    width: 417px;
-                    height: 559px;
-                    // background: url('@{img}wine_name.png') no-repeat;
-                    // background-size: cover;
-                }
-                .pic {
-                    position: absolute;
-                    width: 417px;
-                    height: 559px;
-                    // background: url('@{img}wine_pic.png') no-repeat;
-                    // background-size: cover;
-                }
-                .inside {
-                    display: none;
-                    position: absolute;
-                    width: 363px;
-                    height: 470px;            
-                    background: url('@{img}wine_inside.png') no-repeat;
-                    background-size: cover;
-                }
-                &.choose {
-                    background: url('@{img}wine_choose.png') no-repeat;
-                    background-size: cover;
-                    .name {
-                        position: absolute;
-                        width: 417px;
-                        height: 559px;
-                        // background: url('@{img}wine_name_choose.png') no-repeat;
-                        // background-size: cover;
-                    }
-                    .inside {
-                        display: block;
-                        animation: fadeinout 1.2s  linear;
-                    }
-                }
-            }
-            &.second {
-                width: 422px;
-                height: 325px;
-                left: 284px;
-                top: 903px;
-                // background: url('@{img}professor.png') no-repeat;
-                // background-size: cover;
-                .name {
-                    position: absolute;
-                    width: 489px;
-                    height: 400px;
-                    // background: url('@{img}professor_name.png') no-repeat;
-                    // background-size: cover;
-                }
-                .pic {
-                    position: absolute;
-                    width: 489px;
-                    height: 400px;
-                    // background: url('@{img}professor_pic.png') no-repeat;
-                    // background-size: cover;
-                }
-                .wrong-tips{
-                    bottom: 50px;
-                }
-                .inside {
-                    display: none;
-                    position: absolute;
-                    width: 422px;
-                    height: 325px;
-                    background: url('@{img}professor_inside.png') no-repeat;
-                    background-size: cover;
-                }
-                &.choose {
-                    background: url('@{img}professor_choose.png') no-repeat;
-                    background-size: cover;
-                    .name {
-                        position: absolute;
-                        width: 466px;
-                        height: 360px;
-                        // background: url('@{img}professor_name_choose.png') no-repeat;
-                        // background-size: cover;
-                    }
-                    .inside {
-                        display: block;
-                        animation: fadeinout 1.2s  linear;
-                       
-                    }
-                }
-            }
-            &.third {
-                width: 379px;
-                height: 509px;
-                left: 0;
-                top: 211px;
-                // background: url('@{img}carpente.png') no-repeat;
-                // background-size: cover;
-                &.choose {
-                    background: url('@{img}carpente_choose.png') no-repeat;
-                    background-size: cover;
-                }
-            }
         }
     }
     .end-box {
